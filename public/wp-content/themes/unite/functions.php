@@ -305,10 +305,13 @@ function true_register_products() {
     register_post_type('product',$args);
 }
 
+
+
+// Add new taxonomy
+
 add_action( 'init', 'create_films_taxonomies' ); // Использовать функцию только внутри хука init
 
 function create_films_taxonomies() {
-    // Add new taxonomy, make it hierarchical (like categories)
     $labels = array(
         'name'              => _x( 'Actors', 'taxonomy general name', 'textdomain' ),
         'singular_name'     => _x( 'Actor', 'taxonomy singular name', 'textdomain' ),
@@ -436,4 +439,6 @@ function true_custom_fields() {
 }
 
 add_action('init', 'true_custom_fields');
-?>
+
+
+//include_once( get_template_directory() . './app/public/wp-content//plugins/filmPlugin/film_function.php' );

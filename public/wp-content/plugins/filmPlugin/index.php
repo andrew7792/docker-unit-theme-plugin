@@ -1,23 +1,61 @@
 <?php
-/*
-Plugin Name: filmPlugin
-Description: plugin with functions for the theme unit.
-Version: 1.0
-Author: Andrew7792
-Copyright 2018  Andrew7792  (email: biorostukraine@gmail.com)
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+add_action( 'init', 'create_movie_review' );
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+function create_movie_review() {
+    register_post_type( 'movie_reviews',
+        array(
+            'labels' => array(
+        'name' => 'Movie Reviews',
+                'singular_name' => 'Movie Review',
+                'add_new' => 'Add New',
+                'add_new_item' => 'Add New Movie Review',
+                'edit' => 'Edit',
+                'edit_item' => 'Edit Movie Review',
+                'new_item' => 'New Movie Review',
+                'view' => 'View',
+                'view_item' => 'View Movie Review',
+                'search_items' => 'Search Movie Reviews',
+                'not_found' => 'No Movie Reviews found',
+                'not_found_in_trash' => 'No Movie Reviews found in Trash',
+                'parent' => 'Parent Movie Review'
+            ),
+            'public' => true,
+            'menu_position' => 15,
+            'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
+            'taxonomies' => array( '' ),
+            'menu_icon' => 'dashicons-media-video',
+            'has_archive' => true
+        )
+    );
+}
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., Zp, UA
-*/
-?>
+
+add_action( 'init', 'tru_register_products' ); // Использовать функцию только внутри хука init
+
+function tru_register_products() {
+    $labels = array(
+        'name' => '',
+        'singular_name' => 'Films', // админ панель Добавить->Функцию
+        'add_new' => 'Add films',
+        'add_new_item' => 'Add new film', // заголовок тега <title>
+        'edit_item' => 'Edit film',
+        'new_item' => 'New film',
+        'all_items' => 'All films',
+        'view_item' => 'Watch the film on the site',
+        'search_items' => 'Search film',
+        'not_found' =>  'The film was not found.',
+        'not_found_in_trash' => 'There are no movies in the basket.',
+        'menu_name' => 'Films' // ссылка в меню в админке
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true, // благодаря этому некоторые параметры можно пропустить
+        'menu_icon' => 'dashicons-format-video', // иконка фильмов
+        'menu_position' => 15,
+        'has_archive' => true,
+        'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'comments')
+    );
+    register_post_type('product',$args);
+}
+

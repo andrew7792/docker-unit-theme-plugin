@@ -441,4 +441,4 @@ function true_custom_fields() {
 add_action('init', 'true_custom_fields');
 
 
-//include_once( get_template_directory() . './app/public/wp-content//plugins/filmPlugin/film_function.php' );
+//include_once( get_template_directory() . './app/public/wp-content//plugins/filmPlugin/index.php' );

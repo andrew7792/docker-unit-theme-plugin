@@ -275,6 +275,8 @@ function of_get_option( $name, $default = false ) {
 }
 endif;
 
+
+
 /*task*/
 
 add_action( 'init', 'true_register_products' ); // Использовать функцию только внутри хука init
@@ -441,4 +443,43 @@ function true_custom_fields() {
 add_action('init', 'true_custom_fields');
 
 
-//include_once( get_template_directory() . './app/public/wp-content//plugins/filmPlugin/index.php' );
+function filmsview_func( $atts )
+{
+
+    $args = array(
+        'numberposts' => 5,
+        'category'    => 0,
+        'orderby'     => 'date',
+        'order'       => 'DESC',
+        'include'     => array(),
+        'exclude'     => array(),
+        'meta_key'    => '',
+        'meta_value'  =>'',
+        'post_type'   => 'product',
+        'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+    );
+
+    $posts = get_posts( $args );
+
+
+    foreach($posts as $post)
+    { ?>
+        <div>
+            <?php //var_dump($post); ?>
+            <h2><?=$post->post_title?></h2>
+
+        </div>
+
+        <div>
+            <?=$post->post_modified?>
+        </div>
+        <div class="postContent">
+            <?=$post->post_content?><br/>
+            <a href="<?=$post->guid?>">Подробнее о дате выхода и стоимости билетов..</a>
+        </div>
+    <?php }
+
+    return site_url(); // никаких echo, только return
+}
+
+add_shortcode( 'filmsview', 'filmsview_func' );

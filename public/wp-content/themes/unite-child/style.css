@@ -5,3 +5,17 @@
  * Version: 1.0
  */
 @import url('../unite/style.css');
+
+.postContent {
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    border-bottom: #3C2BB6 1px dotted;
+    text-align: justify;}
+.postContent img{
+    float: left;
+    padding-right: 15px;}
+.subtitleFilm{
+    color:#69397e;
+    font-size: 14px;
+    padding-right: 5px;
+}

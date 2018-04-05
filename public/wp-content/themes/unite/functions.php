@@ -467,9 +467,7 @@ function filmsview_func( $atts )
         <div>
             <?php //var_dump($post); ?>
             <h2><?=$post->post_title?></h2>
-
         </div>
-
         <div>
             <?=$post->post_modified?>
         </div>
@@ -479,7 +477,6 @@ function filmsview_func( $atts )
         </div>
     <?php }
 
-    return site_url(); // никаких echo, только return
 }
 
 add_shortcode( 'filmsview', 'filmsview_func' );
